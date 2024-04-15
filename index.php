@@ -66,7 +66,7 @@
     <form method="GET">
         <div class="form-group">
             <label for="parkingCheckbox">Show only hotels with parking</label>
-            <input type="checkbox" class="form-check-input" name="parking" value="1">
+            <input type="checkbox" class="form-check-input" name="parking" value="true">
         </div>
         <button type="submit" class="btn btn-primary">Send</button>
     </form>
@@ -82,15 +82,19 @@
         </thead>
         <tbody>
             <?php 
+
+     
             foreach ($hotels as $hotel) {
-                      echo "<tr>";
+
+                if (!isset($_GET['parking']) || ($_GET['parking'] == 'true' && $hotel['parking'])) {
+                echo "<tr>";
                 echo "<td>" . $hotel['name'] . "</td>";
                 echo  "<td>" . $hotel['description'] . "</td>" ;
                 echo "<td>"  . ($hotel['parking'] ? 'Disponibile' : 'Non disponibile') . "</td>";
                 echo "<td>"  . $hotel['vote'] . "</td>" ;
                 echo "<td>" . $hotel['distance_to_center'] . " km" . "</td>";
                 };
-              
+            };
             ?>
         </tbody>
     </table>
