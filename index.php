@@ -63,6 +63,13 @@
 <div class="container">
     <h1 class="text-center m-3">List of hotels :</h1>
 
+    <form method="GET">
+        <div class="form-group">
+            <label for="parkingCheckbox">Show only hotels with parking</label>
+            <input type="checkbox" class="form-check-input" name="parking" value="1">
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
     <table class="table  table-bordered text-center">
         <thead>
             <tr>
@@ -76,13 +83,14 @@
         <tbody>
             <?php 
             foreach ($hotels as $hotel) {
-                echo "<tr>";
+                      echo "<tr>";
                 echo "<td>" . $hotel['name'] . "</td>";
                 echo  "<td>" . $hotel['description'] . "</td>" ;
-                echo "<td>"  . $hotel['parking'] . "</td>"  ;
+                echo "<td>"  . ($hotel['parking'] ? 'Disponibile' : 'Non disponibile') . "</td>";
                 echo "<td>"  . $hotel['vote'] . "</td>" ;
                 echo "<td>" . $hotel['distance_to_center'] . " km" . "</td>";
-            }
+                };
+              
             ?>
         </tbody>
     </table>
